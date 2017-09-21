@@ -1,18 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-function App({ name }) {
+import MessageList from '../MessageList/MessageList';
+
+import { container, messageBox } from './App.css';
+
+const fakeMessages = [
+  { id: '1', author: 'Anass', content: 'JS is amazing' },
+  { id: '2', author: 'Roman', content: 'JS is impressive' },
+];
+
+function App() {
   return (
-    <div>Hello {name} !</div>
+    <div className={container}>
+      <div className={messageBox}>
+        <MessageList messages={fakeMessages} />
+      </div>
+    </div>
   );
 }
-
-App.propTypes = {
-  name: PropTypes.string,
-};
-
-App.defaultProps = {
-  name: 'OCTO',
-};
 
 export default App;
