@@ -15,21 +15,34 @@ class App extends Component {
     this.state = {
       messages: [],
     };
+
+    this.refreshList = this.refreshList.bind(this);
+    this.postMessageAndRefreshList = this.postMessageAndRefreshList.bind(this);
   }
 
   componentWillMount() {
-    fetchMessages(API_URL).then(({ data }) => {
-      this.setState({
-        messages: data,
+    this.refreshList();
+  }
+
+  refreshList() {
+    return fetchMessages(API_URL)
+      .then(({ data }) => {
+        this.setState({
+          messages: data,
+        });
       });
-    });
+  }
+
+  postMessageAndRefreshList(message) {
+    return postMessage(message)
+      .then(this.refreshList);
   }
 
   render() {
     return (
       <div className={container}>
         <div className={messageBox}>
-          <Input onEnter={postMessage} />
+          <Input onEnter={this.postMessageAndRefreshList} />
           <MessageList messages={this.state.messages} />
         </div>
       </div>
