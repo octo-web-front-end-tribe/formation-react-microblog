@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 import MessageList from '../MessageList/MessageList';
-import { fetchMessages } from '../ApiHelper/ApiHelper';
+import Input from '../Input/Input';
+import { fetchMessages, postMessage } from '../ApiHelper/ApiHelper';
 
 import { container, messageBox } from './App.css';
 
@@ -28,6 +29,7 @@ class App extends Component {
     return (
       <div className={container}>
         <div className={messageBox}>
+          <Input onEnter={postMessage} />
           <MessageList messages={this.state.messages} />
         </div>
       </div>
