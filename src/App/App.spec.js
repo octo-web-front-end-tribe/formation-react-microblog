@@ -3,6 +3,7 @@ import React from 'react';
 import chaiEnzyme from 'chai-enzyme';
 import sinonChai from 'sinon-chai';
 import chai, { expect } from 'chai';
+
 import sinon from 'sinon';
 import { shallow, mount } from 'enzyme';
 
@@ -63,9 +64,9 @@ describe('App component', () => {
 
   describe('Input element', () => {
     it('should have an Input element', () => {
-      const wrapper = shallow(<App />);
+      const wrapper = mount(<App />);
 
-      expect(wrapper).to.have.exactly(1).descendants(Input);
+      expect(wrapper.find(Input)).to.have.length(1);
     });
 
     describe('when the onEnter prop is invoked', () => {
@@ -92,7 +93,7 @@ describe('App component', () => {
       it('should post the message with the right parameters', () => {
         const testMessage = 'This is a test message';
 
-        const wrapper = shallow(<App />);
+        const wrapper = mount(<App />);
         const onEnterProp = wrapper
           .find(Input)
           .prop('onEnter');
@@ -103,7 +104,7 @@ describe('App component', () => {
       });
 
       it('should fetch the messages from the API once the message is posted', () => {
-        const wrapper = shallow(<App />);
+        const wrapper = mount(<App />);
         const onEnterProp = wrapper
           .find(Input)
           .prop('onEnter');
@@ -114,7 +115,7 @@ describe('App component', () => {
       });
 
       it('should refresh the message list once the message is posted', () => {
-        const wrapper = shallow(<App />);
+        const wrapper = mount(<App />);
         const onEnterProp = wrapper
           .find(Input)
           .prop('onEnter');
