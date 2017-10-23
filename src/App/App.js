@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import MessageList from '../MessageList/MessageList';
+import NavigationBar from '../NavigationBar/NavigationBar';
 import Input from '../Input/Input';
 import { fetchMessages, postMessage } from '../ApiHelper/ApiHelper';
 
 import { container, messageBox } from './App.css';
+import About from '../About/About';
 
 const API_URL = 'https://skool-microblog.herokuapp.com/messages';
 
@@ -40,12 +43,25 @@ class App extends Component {
 
   render() {
     return (
-      <div className={container}>
-        <div className={messageBox}>
-          <Input onEnter={this.postMessageAndRefreshList} />
-          <MessageList messages={this.state.messages} />
+      <BrowserRouter>
+        <div className={container}>
+          <NavigationBar />
+          <Switch>
+            <Route
+              path="/about"
+              component={About}
+            />
+            <Route
+              render={() => (
+                <div className={messageBox}>
+                  <Input onEnter={this.postMessageAndRefreshList} />
+                  <MessageList messages={this.state.messages} />
+                </div>
+              )}
+            />
+          </Switch>
         </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }
