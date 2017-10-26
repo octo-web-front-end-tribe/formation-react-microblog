@@ -24,7 +24,7 @@ describe('MessageList component', () => {
 
   describe('on render', () => {
     it('Should render as many Message components as there are in props', () => {
-      const wrapper = shallow(<MessageList messages={fakeMessages} />);
+      const wrapper = shallow(<MessageList messages={fakeMessages} getMessages={() => {}}/>);
 
       expect(wrapper).to.have.exactly(2).descendants(Message);
     });

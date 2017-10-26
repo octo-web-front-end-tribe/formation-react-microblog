@@ -3,12 +3,18 @@ import PropTypes from 'prop-types';
 import Message from '../Message/Message';
 import { container } from './MessageList.css';
 
-function MessageList({ messages }) {
-  return (
-    <ul className={container}>
-      {messages.map(message => <Message key={message.id} message={message} />)}
-    </ul>
-  );
+class MessageList extends React.Component {
+  componentWillMount() {
+    setInterval(this.props.getMessages, 10000);
+  }
+
+  render(){
+    return (
+      <ul className={container}>
+        {this.props.messages.map(message => <Message key={message.id} message={message} />)}
+      </ul>
+    );
+  }
 }
 
 MessageList.propTypes = {
