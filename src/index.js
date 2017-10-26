@@ -8,7 +8,7 @@ import messagesReducer from "./Store/messagesReducer";
 const APP_NAME = 'Microblog React';
 
 const rootReducers = combineReducers({
-  messages : messagesReducer,
+  messages: messagesReducer,
 });
 
 const store = createStore(rootReducers);

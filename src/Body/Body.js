@@ -7,17 +7,14 @@ import { fetchMessages, postMessage } from '../ApiHelper/ApiHelper';
 
 import { messageBox } from './Body.css';
 import About from '../About/About';
+import { connect } from 'react-redux';
+import { updateMessages } from '../Store/messagesActions';
 
 const API_URL = 'https://skool-microblog.herokuapp.com/messages';
 
-export default class Body extends Component {
+export class Body extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      messages: [],
-    };
-
     this.refreshList = this.refreshList.bind(this);
     this.postMessageAndRefreshList = this.postMessageAndRefreshList.bind(this);
   }
@@ -29,9 +26,7 @@ export default class Body extends Component {
   refreshList() {
     return fetchMessages(API_URL)
       .then(({ data }) => {
-        this.setState({
-          messages: data,
-        });
+        this.props.dispatch(updateMessages(data));
       });
   }
 
@@ -57,3 +52,5 @@ export default class Body extends Component {
     </Switch>);
   }
 }
+
+export default connect()(Body);
