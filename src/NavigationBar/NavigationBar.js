@@ -8,6 +8,7 @@ import {
   navigationBarLink,
   active,
 } from './NavigationBar.css';
+import MessageNumberContainer from '../MessageNumber/MessageNumberContainer';
 
 const NavigationBar = () => (
   <div className={navigationBar}>
@@ -26,6 +27,7 @@ const NavigationBar = () => (
           </li>
         </ul>
       </div>
+      <MessageNumberContainer />
     </div>
   </div>
 );

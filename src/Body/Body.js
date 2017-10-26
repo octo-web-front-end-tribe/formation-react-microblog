@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import MessageList from '../MessageList/MessageList';
+import MessageListContainer from '../MessageList/MessageListContainer';
 import Input from '../Input/Input';
 import { fetchMessages, postMessage } from '../ApiHelper/ApiHelper';
 
@@ -50,7 +50,7 @@ export default class Body extends Component {
         render={() => (
           <div className={messageBox}>
             <Input onEnter={this.postMessageAndRefreshList} />
-            <MessageList messages={this.state.messages} />
+            <MessageListContainer />
           </div>
         )}
       />
