@@ -2,6 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import App from './App/App';
 import {combineReducers, createStore, applyMiddleware} from "redux";
+import { composeWithDevTools } from 'redux-devtools-extension';
 import {Provider} from "react-redux";
 import messagesReducer from "./Store/messagesReducer";
 import thunk from 'redux-thunk';
@@ -12,7 +13,7 @@ const rootReducers = combineReducers({
   messages: messagesReducer,
 });
 
-const store = createStore(rootReducers, applyMiddleware(thunk));
+const store = createStore(rootReducers, composeWithDevTools(applyMiddleware(thunk)));
 
 render(<Provider store={store}><App name={APP_NAME}/></Provider>, document.getElementById('root'));
 
